@@ -3,10 +3,13 @@ const mongoose = require("mongoose");
 const ShortUrl = require("./models/shortUrls");
 const app = express();
 
-mongoose.connect("mongodb://localhost/urlShortner", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb://karanjot:karan24mongodb@urlshortner-shard-00-00.zijij.mongodb.net:27017,urlshortner-shard-00-01.zijij.mongodb.net:27017,urlshortner-shard-00-02.zijij.mongodb.net:27017/UrlShortner?ssl=true&replicaSet=atlas-z13bh5-shard-0&authSource=admin&retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
