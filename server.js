@@ -5,18 +5,18 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost:27017/urlShortner", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/urlShortner", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
-// mongoose.connect(
-//   "mongodb://karanjot:karan24mongodb@urlshortner-shard-00-00.zijij.mongodb.net:27017,urlshortner-shard-00-01.zijij.mongodb.net:27017,urlshortner-shard-00-02.zijij.mongodb.net:27017/UrlShortner?ssl=true&replicaSet=atlas-z13bh5-shard-0&authSource=admin&retryWrites=true&w=majority",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }
-// );
+mongoose.connect(
+  "mongodb://karanjot:karan24mongodb@urlshortner-shard-00-00.zijij.mongodb.net:27017,urlshortner-shard-00-01.zijij.mongodb.net:27017,urlshortner-shard-00-02.zijij.mongodb.net:27017/UrlShortner?ssl=true&replicaSet=atlas-z13bh5-shard-0&authSource=admin&retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
