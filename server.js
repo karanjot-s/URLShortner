@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const ShortUrl = require("./models/shortUrls");
+const bodyParser = require("body-parser");
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -18,9 +19,10 @@ mongoose.connect(
   }
 );
 
+app.use(express.static("public"));
+app.set("views", "./public/views");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -51,6 +53,4 @@ app.get("/:shortUrl", async (req, res) => {
   res.redirect(shortUrl.full);
 });
 
-console.log(`Started at port ${PORT}`);
-
-app.listen(PORT);
+app.listen(PORT, () => console.log(`Started at port ${PORT}`));
