@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const ShortUrl = require("./models/shortUrls");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -11,13 +12,8 @@ const PORT = process.env.PORT || 5000;
 //   useUnifiedTopology: true,
 // });
 
-mongoose.connect(
-  "mongodb://karanjot:karan24mongodb@urlshortner-shard-00-00.zijij.mongodb.net:27017,urlshortner-shard-00-01.zijij.mongodb.net:27017,urlshortner-shard-00-02.zijij.mongodb.net:27017/UrlShortner?ssl=true&replicaSet=atlas-z13bh5-shard-0&authSource=admin&retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.set("strictQuery", false);
+mongoose.connect(process.env.MONGO_URL);
 
 app.use(express.static("public"));
 app.set("views", "./public/views");
